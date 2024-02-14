@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Valentine's Surprise</title>
+    <style>
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .popup h1 {
+            text-align: center;
+        }
+        
+        .popup button {
+            display: block;
+            margin: auto;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    var attempts = 0;
+
+    function showPopup() {
+        var popup = document.createElement("div");
+        popup.className = "popup";
+        
+        var heading = document.createElement("h1");
+        
+        if (attempts === 0) {
+          heading.textContent = "Will you be my valentine?";
+        } else if (attempts === 1) {
+          heading.textContent = "Are you sure you don't want to be my valentine?";
+        } else if (attempts === 2) {
+          heading.textContent = "I promise I'll make you happy. Will you reconsider?";
+        } else if (attempts === 3) {
+          heading.textContent = "Can we at least be friends on Valentine's Day?";
+        } else if (attempts === 4) {
+          heading.textContent = "Last chance! Please say yes!";
+        }
+
+        var yesButton = document.createElement("button");
+        yesButton.textContent = "Yes";
+        yesButton.addEventListener("click", function() {
+            if (attempts === 0) {
+                alert("Thanks for being my valentine! Can I have your number? Or maybe you can message me on Instagram @demure.shiv");
+            } else {
+                attempts = 0;
+                showPopup();
+            }
+        });
+
+        var noButton = document.createElement("button");
+        noButton.textContent = "No";
+        noButton.addEventListener("click", function() {
+            attempts++;
+            showPopup();
+        });
+
+        popup.appendChild(heading);
+        popup.appendChild(yesButton);
+        popup.appendChild(noButton);
+
+        document.body.appendChild(popup);
+    }
+
+    showPopup();
+</script>
+
+</body>
+</html>
